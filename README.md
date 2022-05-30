@@ -16,11 +16,11 @@ python3 main.py exp.config=base_config.yaml exp.config_dir=configs    # Configur
 
 ### Gallery
 
-![Generation](/img/example.png)
+![Generation](./img/example.png)
 
 Latent trajectories are input-agnostic.
 
-![Generation control](/img/hyperparameter.png)
+![Generation control](./img/hyperparameter.png)
 
 Image generation of model FC-A is controlled by a scale hyperparameter.
 
