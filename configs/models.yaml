@@ -1,0 +1,56 @@
+deformators:
+  latent_vector:
+    directions_count: ${training.directions_count}
+    inner_dim: 16
+    type: fca
+    random_init: false
+    bias: true
+  activations_vector:
+    directions_count: ${training.directions_count}
+    layers: ???
+  latent_activation_vector:
+    generator: ???
+  warped_gan_space:
+    shift_dim: 512
+    num_support_dipoles: 16
+    support_vectors_dim: 512
+    learn_alphas: false
+    learn_gammas: false
+    gamma: 1000
+    min_shift_magnitude: 0.2
+    max_shift_magnitude: 0.5
+    
+regressors:
+  resnet_cls_magnitude_scalar:
+    dim: ${training.directions_count}
+    downsample: null
+  resnet_cls_magnitude_vector:
+    dim: ${training.directions_count}
+    downsample: null
+  lenet_cls_magnitude_scalar:
+    dim: ${training.directions_count}
+    channels: 3
+    width: 2
+  lenet_cls_magnitude_vector:
+    dim: ${training.directions_count}
+    channels: 3
+    width: 2
+  wgs_embed:
+    dim: 512
+generators:
+  stylegan2:
+    size: 1024
+    latent_dim: 512
+    n_layers_mlp: 8
+    weights: ./weights/pretrained/generators/StyleGAN2/stylegan2-ffhq-config-f.pt
+    shift_in_w: true
+  biggan:
+    dataset: 'I128_hdf5'
+    G_nl: 'inplace_relu'
+    D_nl: 'inplace_relu'
+    weights_path: ./weights/pretrained/generators/BigGAN/G_ema.pth
+    gen_cl: 146
+  sn_anime:
+    gan_dir: ./weights/pretrained/generators/SN_Anime/
+  sn_mnist:
+    gan_dir: ./weights/pretrained/generators/SN_MNIST/ 

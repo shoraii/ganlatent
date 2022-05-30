@@ -1,0 +1,8 @@
+*.pt
+*.pth
+*.png
+*.jpg
+.idea/
+pretrained/
+__pycache__/
+weights/

@@ -1,0 +1,62 @@
+exp:
+  config_dir: configs
+  config: base_config.yaml
+  project: GANLatent
+  name: Sample Name
+  seed: 42069
+  root: .
+  notes: Sample Name
+  logging: true
+training:
+  trainer: base_trainer
+  generator: stylegan2
+  deformator: latent_vector
+  regressor: resnet_cls_magnitude_scalar
+  shift_maker: randomizer
+  directions_count: 128
+  num_iters: 50000
+  batch_size: 16
+  device: 'cuda:0'
+  truncation: null
+  loss_funcs:
+  - ce_loss
+  - mae_magnitude_scalar
+  loss_coefs:
+  - 1.0
+  - 0.8
+deformation:
+  randomizer:
+    directions_count: ${training.directions_count}
+    shift_scale: 15.0
+    min_shift: 0.2
+    shift_distribution: UNIFORM
+regressor_setup:
+  model: ${training.regressor}
+  loss_funcs: []
+  loss_coefs: null
+  optimizer:
+    weight_decay: 0.0
+    lr: 0.0001
+    betas:
+    - 0.5
+    - 0.999
+deformator_setup:
+  model: ${training.deformator}
+  loss_funcs: []
+  loss_coefs: null
+  optimizer:
+    weight_decay: 0.0
+    lr: 0.0001
+    betas:
+    - 0.5
+    - 0.999
+logging:
+  step_every: 2
+  step_interpolation: 600
+  step_backup: 1000
+  step_save: 10000
+  step_losses: 5
+  step_accuracy: 30
+checkpoint:
+  path: null
+  checkpointing_off: false
