@@ -1,4 +1,4 @@
-# GAN-LSD: GAN Latent Space Discovery
+# gan-lsd: GAN Latent Space Discovery
 
 ## Discover interpretable trajectories inside GAN's latent space using different algorithms
 
